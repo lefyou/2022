@@ -1,0 +1,1770 @@
+{
+
+  "id" : null,
+  "name" : "Fortinet FortiGate",
+  "description" : "This is a content pack containing extractors, dashboards and input to get useful information out of a FortiGate firewall.  The input defaults to listen on UDP 30000.  Tested on FortiOS 5.4 but should work with FortiOS 5.2.\r\n\r\nThe extractors were done in regular expressions.  I may update this content pack in the future with Grok extractors as time permits.  Feel free to contribute.\r\n\r\nSpecial thank you to Dustin Shaw at http://www.virtualizetheworld.com/ for guidance on creating the extractors.",
+  "category" : "Next Generation Firewall, Firewall",
+  "inputs" : [ {
+    "title" : "FortiGate Syslog UDP",
+    "configuration" : {
+      "override_source" : "",
+      "allow_override_date" : true,
+      "recv_buffer_size" : 262144,
+      "bind_address" : "0.0.0.0",
+      "port" : 30000
+    },
+    "type" : "org.graylog2.inputs.syslog.udp.SyslogUDPInput",
+    "global" : false,
+    "extractors": [
+      {
+        "title": "FGTappcat",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "appcat",
+        "extractor_config": {
+          "regex_value": "^.+\\sappcat=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTaction",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "action",
+        "extractor_config": {
+          "regex_value": "^.+\\saction=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTappact",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "appact",
+        "extractor_config": {
+          "regex_value": "^.+\\sappact=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTapp",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "app",
+        "extractor_config": {
+          "regex_value": "^.+\\sapp=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTapplist",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "applist",
+        "extractor_config": {
+          "regex_value": "^.+\\sapplist=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTattack",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "attack",
+        "extractor_config": {
+          "regex_value": "^.+\\sattack=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTdir",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "dir",
+        "extractor_config": {
+          "regex_value": "^.+\\sdir=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTdevid",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "devid",
+        "extractor_config": {
+          "regex_value": "^.+\\sdevid=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTdstintf",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "dstintf",
+        "extractor_config": {
+          "regex_value": "^.+\\sdstintf=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTdstip",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "dstip",
+        "extractor_config": {
+          "regex_value": "^.+\\sdstip=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTeventtype",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "eventtype",
+        "extractor_config": {
+          "regex_value": "^.+\\seventtype=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTdtype",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "dtype",
+        "extractor_config": {
+          "regex_value": "^.+\\sdtype=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTdstcountry",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "dstcountry",
+        "extractor_config": {
+          "regex_value": "^.+\\sdstcountry=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTerror_reason",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "error_reason",
+        "extractor_config": {
+          "regex_value": "^.+\\serror_reason=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTfile",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "file",
+        "extractor_config": {
+          "regex_value": "^.+\\sfile=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTgroup",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "group",
+        "extractor_config": {
+          "regex_value": "^.+\\sgroup=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTdstport",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "dstport",
+        "extractor_config": {
+          "regex_value": "^.+\\sdstport=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTduration",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "duration",
+        "extractor_config": {
+          "regex_value": "^.+\\sduration=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTinit",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "init",
+        "extractor_config": {
+          "regex_value": "^.+\\sinit=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTlocip",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "locip",
+        "extractor_config": {
+          "regex_value": "^.+\\slocip=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTidentidx",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "identidx",
+        "extractor_config": {
+          "regex_value": "^.+\\sidentidx=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTlocport",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "locport",
+        "extractor_config": {
+          "regex_value": "^.+\\slocport=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGThostname",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "hostname",
+        "extractor_config": {
+          "regex_value": "^.+\\shostname=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTmode",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "mode",
+        "extractor_config": {
+          "regex_value": "^.+\\smode=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGToutintf",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "outintf",
+        "extractor_config": {
+          "regex_value": "^.+\\soutintf=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTmsg",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "msg",
+        "extractor_config": {
+          "regex_value": "^.+\\smsg=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTprofile",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "profile",
+        "extractor_config": {
+          "regex_value": "^.+\\sprofile=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTpolicyid",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "policyid",
+        "extractor_config": {
+          "regex_value": "^.+\\spolicyid=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTproto",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "proto",
+        "extractor_config": {
+          "regex_value": "^.+\\sproto=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTquarskip",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "quarskip",
+        "extractor_config": {
+          "regex_value": "^.+\\squarskip=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTprofiletype",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "profiletype",
+        "extractor_config": {
+          "regex_value": "^.+\\sprofiletype=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTref",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "ref",
+        "extractor_config": {
+          "regex_value": "^.+\\sref=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTservice",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "service",
+        "extractor_config": {
+          "regex_value": "^.+\\sservice=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTpeer_notif",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "peer_notif",
+        "extractor_config": {
+          "regex_value": "^.+\\speer_notif=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTrole",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "role",
+        "extractor_config": {
+          "regex_value": "^.+\\srole=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTsrccountry",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "srccountry",
+        "extractor_config": {
+          "regex_value": "^.+\\ssrccountry=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTservice",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "service",
+        "extractor_config": {
+          "regex_value": "^.+\\sservice=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTresult",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "result",
+        "extractor_config": {
+          "regex_value": "^.+\\sresult=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTremport",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "remport",
+        "extractor_config": {
+          "regex_value": "^.+\\sremport=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTremip",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "remip",
+        "extractor_config": {
+          "regex_value": "^.+\\sremip=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTstatus",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "status",
+        "extractor_config": {
+          "regex_value": "^.+\\sstatus=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTsrcport",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "srcport",
+        "extractor_config": {
+          "regex_value": "^.+\\ssrcport=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTsrcip",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "srcip",
+        "extractor_config": {
+          "regex_value": "^.+\\ssrcip=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTstage",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "stage",
+        "extractor_config": {
+          "regex_value": "^.+\\sstage=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTstatus",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "status",
+        "extractor_config": {
+          "regex_value": "^.+\\sstatus=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTsrcintf",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "srcintf",
+        "extractor_config": {
+          "regex_value": "^.+\\ssrcintf=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTsubtype",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "subtype",
+        "extractor_config": {
+          "regex_value": "^.+\\ssubtype=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTxauthgroup",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "xauthgroup",
+        "extractor_config": {
+          "regex_value": "^.+\\sxauthgroup=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTtrandisp",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "trandisp",
+        "extractor_config": {
+          "regex_value": "^.+\\strandisp=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTtransport",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "transport",
+        "extractor_config": {
+          "regex_value": "^.+\\stransport=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTtransip",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "transip",
+        "extractor_config": {
+          "regex_value": "^.+\\stransip=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTtype",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "type",
+        "extractor_config": {
+          "regex_value": "^.+\\stype=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTcatdesc",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "catdesc",
+        "extractor_config": {
+          "regex_value": "^.*\\scatdesc=\"(.*)\"\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTvpntunnel",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "vpntunnel",
+        "extractor_config": {
+          "regex_value": "^.+\\svpntunnel=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTvirus",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "virus",
+        "extractor_config": {
+          "regex_value": ".+\\svirus=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTutmevent",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "utmevent",
+        "extractor_config": {
+          "regex_value": "^.+\\sutmevent=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTsentpkt",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "sentpkt",
+        "extractor_config": {
+          "regex_value": "^.+\\ssentpkt=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTuser",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "user",
+        "extractor_config": {
+          "regex_value": "^.*\\suser=\\\"(\\w+)?\\\"\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTutmaction",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "utmaction",
+        "extractor_config": {
+          "regex_value": "^.+\\sutmaction=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTxauthuser",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "xauthuser",
+        "extractor_config": {
+          "regex_value": "^.+\\sxauthuser=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTlogdesc",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "logdesc",
+        "extractor_config": {
+          "regex_value": "^.+\\slogdesc=\\\"(.+?)\\\""
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTsentbyte",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "sentbyte",
+        "extractor_config": {
+          "regex_value": "^.+\\ssentbyte=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTvd",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "vd",
+        "extractor_config": {
+          "regex_value": "^.*vd=(\\w+).*$"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTapsn",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "apsn",
+        "extractor_config": {
+          "regex_value": "^.*apsn=\\\"(\\w+)\\\"\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTdevname",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "devname",
+        "extractor_config": {
+          "regex_value": "^.+\\sdevname=(\\w+)\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTsrcssid",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "srcssid",
+        "extractor_config": {
+          "regex_value": "^.*srcssid=\\\"([\\w\\-_]+)\\\"\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTrcvdbyte",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "rcvdbyte",
+        "extractor_config": {
+          "regex_value": "^.+\\srcvdbyte=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTrcvdpkt",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "rcvdpkt",
+        "extractor_config": {
+          "regex_value": "^.+\\srcvdpkt=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTradioband",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "radioband",
+        "extractor_config": {
+          "regex_value": "^.*radioband=\\\"([\\w\\-_\\.]+)\\\"\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTappid",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "appid",
+        "extractor_config": {
+          "regex_value": "^.+\\sappid=(\\d+)\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTapprisk",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "apprisk",
+        "extractor_config": {
+          "regex_value": "^.+\\sapprisk=(\\w+)(?:.*)?$"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTap",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "ap",
+        "extractor_config": {
+          "regex_value": "^.*ap=\\\"([\\w\\-_]+)\\\"\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTpoluuid",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "poluuid",
+        "extractor_config": {
+          "regex_value": "^.*poluuid=([A-fa-f\\d\\-]+)\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTpolicytype",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "policytype",
+        "extractor_config": {
+          "regex_value": "^.*policytype=([\\w]+)\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTchannel",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "channel",
+        "extractor_config": {
+          "regex_value": "^.*channel=(\\d+)\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTsrcmac",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "srcmac",
+        "extractor_config": {
+          "regex_value": "^.*\\ssrcmac=((?:[A-Fa-f\\d]{2}:){5}[A-Fa-f\\d]{2})"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTdevtype",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "devtype",
+        "extractor_config": {
+          "regex_value": "^.*devtype=\\\"([\\w\\s]+)\\\"\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTosname",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "osname",
+        "extractor_config": {
+          "regex_value": "^.*osname=\\\"([\\w]+)\\\"\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTcountapp",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "countapp",
+        "extractor_config": {
+          "regex_value": "^.*countapp=(\\d+)\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTmastersrcmac",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "mastersrcmac",
+        "extractor_config": {
+          "regex_value": "^.*mastersrcmac=((?:[A-Fa-f\\d]{2}:){5}[A-Fa-f\\d]{2})\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTurl",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "url",
+        "extractor_config": {
+          "regex_value": "^.*url=\\\"(\\/[\\w\\/\\-\\.\\+@#%_\\(\\)\\{\\}\\|\\?\\=&;]+)\\\"\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTosversion",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "osversion",
+        "extractor_config": {
+          "regex_value": "^.*osversion=\\\"([\\w\\.\\(\\}]+)\\\"\\s+"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTcpu",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "cpu",
+        "extractor_config": {
+          "regex_value": "^.*\\scpu=(\\d+)\\s"
+        },
+        "condition_type": "string",
+        "condition_value": "action=\"perf-stats\""
+      },
+      {
+        "title": "FGTmemory",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "memory",
+        "extractor_config": {
+          "regex_value": "^.*\\smem=(\\d+)\\s"
+        },
+        "condition_type": "string",
+        "condition_value": "action=\"perf-stats\""
+      },
+      {
+        "title": "FGTseverity",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "severity",
+        "extractor_config": {
+          "regex_value": "^.*\\sseverity=(\\w+)"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTtotalsession",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "totalsession",
+        "extractor_config": {
+          "regex_value": "^.*\\stotalsession=(\\d+)\\s"
+        },
+        "condition_type": "string",
+        "condition_value": "action=\"perf-stats\""
+      },
+      {
+        "title": "FGTsetuprate",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "setuprate",
+        "extractor_config": {
+          "regex_value": "^.*\\ssetuprate=(\\d+)\\s"
+        },
+        "condition_type": "string",
+        "condition_value": "action=\"perf-stats\""
+      },
+      {
+        "title": "FGTbandwidth_sent",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "bandwidth_sent",
+        "extractor_config": {
+          "regex_value": "^.*\\sbandwidth=(\\d+)\\/\\d+\\s"
+        },
+        "condition_type": "string",
+        "condition_value": "action=\"perf-stats\""
+      },
+      {
+        "title": "FGTfazlograte",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "fazlograte",
+        "extractor_config": {
+          "regex_value": "^.*\\sfazlograte=(\\d+)\\s"
+        },
+        "condition_type": "string",
+        "condition_value": "action=\"perf-stats\""
+      },
+      {
+        "title": "FGTbandwidth_received",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "bandwidth_recv",
+        "extractor_config": {
+          "regex_value": "^.*\\sbandwidth=\\d+\\/(\\d+)\\s"
+        },
+        "condition_type": "string",
+        "condition_value": "action=\"perf-stats\""
+      },
+      {
+        "title": "FGTdisk",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "disk",
+        "extractor_config": {
+          "regex_value": "^.*\\sdisk=(\\d+)\\s"
+        },
+        "condition_type": "string",
+        "condition_value": "action=\"perf-stats\""
+      },
+      {
+        "title": "FGTSource2",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "source_2",
+        "extractor_config": {
+          "regex_value": "^.+\\sdevname=\\\"(\\S+)\\\"\\s|^.+\\sdevname=(\\S+)\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTdisklograte",
+        "extractor_type": "regex",
+        "converters": [
+          {
+            "type": "numeric",
+            "config": {}
+          }
+        ],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "disklograte",
+        "extractor_config": {
+          "regex_value": "^.*\\sdisklograte=(\\d+)\\s"
+        },
+        "condition_type": "string",
+        "condition_value": "action=\"perf-stats\""
+      },
+      {
+        "title": "FGTlogid",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "logid",
+        "extractor_config": {
+          "regex_value": "^.+\\slogid=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      },
+      {
+        "title": "FGTsource",
+        "extractor_type": "regex",
+        "converters": [],
+        "order": 0,
+        "cursor_strategy": "copy",
+        "source_field": "message",
+        "target_field": "source",
+        "extractor_config": {
+          "regex_value": "^.+\\sdevname=\\\"?(\\S+?)\\\"?\\s"
+        },
+        "condition_type": "none",
+        "condition_value": ""
+      }
+    ],
+    "static_fields" : { }
+  } ],
+  "streams" : [ ],
+  "outputs" : [ ],
+  "dashboards" : [ {
+    "title" : "FortiGate Network Activity - Last 24 Hours",
+    "description" : "Overview of network activity detected by the FortiGate",
+    "dashboard_widgets" : [ {
+      "description" : "Top Source Countries",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "srccountry",
+        "show_pie_chart" : true,
+        "query" : "source:fwf92d3g14000548 AND type:traffic AND subtype:forward",
+        "show_data_table" : true
+      },
+      "col" : 1,
+      "row" : 3,
+      "cache_time" : 10
+    }, {
+      "description" : "Top Destination Countries",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "dstcountry",
+        "show_pie_chart" : true,
+        "query" : "source:fwf92d3g14000548 AND type:traffic AND subtype:forward",
+        "show_data_table" : true
+      },
+      "col" : 2,
+      "row" : 3,
+      "cache_time" : 10
+    }, {
+      "description" : "Top Applications",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "app",
+        "show_pie_chart" : true,
+        "query" : "source:fwf92d3g14000548 AND type:traffic AND subtype:forward",
+        "show_data_table" : true
+      },
+      "col" : 3,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "Average Sent Bytes per Minute",
+      "type" : "FIELD_CHART",
+      "configuration" : {
+        "valuetype" : "mean",
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "renderer" : "area",
+        "interpolation" : "linear",
+        "field" : "sentbyte",
+        "query" : "source:fwf92d3g14000548 AND type:traffic AND subtype:forward",
+        "interval" : "minute"
+      },
+      "col" : 0,
+      "row" : 0,
+      "cache_time" : 10
+    }, {
+      "description" : "Average Received Bytes per Minute",
+      "type" : "FIELD_CHART",
+      "configuration" : {
+        "valuetype" : "mean",
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "renderer" : "area",
+        "interpolation" : "linear",
+        "field" : "rcvdbyte",
+        "query" : "source:fwf92d3g14000548 AND type:traffic AND subtype:forward",
+        "interval" : "minute"
+      },
+      "col" : 0,
+      "row" : 0,
+      "cache_time" : 10
+    } ]
+  }, {
+    "title" : "FortiGate Threat Summary - Last 24 Hours",
+    "description" : "Overview of threats in the last day detected by FortiGate",
+    "dashboard_widgets" : [ {
+      "description" : "Top Viruses",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "virus",
+        "show_pie_chart" : true,
+        "query" : "source:fwf92d3g14000548 AND _exists_:virus",
+        "show_data_table" : true
+      },
+      "col" : 1,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "Top IPS Attacks",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "attack",
+        "show_pie_chart" : true,
+        "query" : "source:fwf92d3g14000548 AND _exists_:attack",
+        "show_data_table" : true
+      },
+      "col" : 2,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "Top Security Risk Web Domains",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "hostname",
+        "show_pie_chart" : true,
+        "query" : "source:fwf92d3g14000548 AND subtype:webfilter AND catdesc:(\"Malicious Websites\" Phishing \"Spam URLs\")",
+        "show_data_table" : true
+      },
+      "col" : 3,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "Total Attacks",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "interval" : "hour",
+        "query" : "source:fwf92d3g14000548 AND _exists_:attack"
+      },
+      "col" : 2,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "Attack Count",
+      "type" : "SEARCH_RESULT_COUNT",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "lower_is_better" : true,
+        "trend" : true,
+        "query" : "source:fwf92d3g14000548 AND _exists_:attack"
+      },
+      "col" : 1,
+      "row" : 1,
+      "cache_time" : 10
+    } ]
+  }, {
+    "title" : "FortiGate Web Activity - Last 24 Hours",
+    "description" : "Overview of web activity detected by FortiGate",
+    "dashboard_widgets" : [ {
+      "description" : "Top Web Categories",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "catdesc",
+        "show_pie_chart" : true,
+        "query" : "source:fwf92d3g14000548 AND subtype:webfilter",
+        "show_data_table" : true
+      },
+      "col" : 2,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "Top Web Domains",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "hostname",
+        "show_pie_chart" : true,
+        "query" : "source:fwf92d3g14000548 AND subtype:webfilter",
+        "show_data_table" : true
+      },
+      "col" : 1,
+      "row" : 1,
+      "cache_time" : 10
+    } ]
+  }, {
+    "title" : "FortiGate System Activity - Last 24 Hours",
+    "description" : "Overview of System Activity on FortiGate",
+    "dashboard_widgets" : [ {
+      "description" : "Average CPU per Minute",
+      "type" : "FIELD_CHART",
+      "configuration" : {
+        "valuetype" : "mean",
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "renderer" : "area",
+        "interpolation" : "linear",
+        "field" : "cpu",
+        "query" : "source:fwf92d3g14000548  AND action:\\\"perf-stats\\\"",
+        "interval" : "minute"
+      },
+      "col" : 1,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "Average Memory Utilization per Minute",
+      "type" : "FIELD_CHART",
+      "configuration" : {
+        "valuetype" : "mean",
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "renderer" : "area",
+        "interpolation" : "linear",
+        "field" : "memory",
+        "query" : "source:fwf92d3g14000548  AND action:\\\"perf-stats\\\"",
+        "interval" : "minute"
+      },
+      "col" : 1,
+      "row" : 3,
+      "cache_time" : 10
+    }, {
+      "description" : "Average Disk Usage per Minute",
+      "type" : "FIELD_CHART",
+      "configuration" : {
+        "valuetype" : "mean",
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "renderer" : "area",
+        "interpolation" : "linear",
+        "field" : "disk",
+        "query" : "source:fwf92d3g14000548 AND action:\\\"perf-stats\\\"",
+        "interval" : "minute"
+      },
+      "col" : 1,
+      "row" : 4,
+      "cache_time" : 10
+    }, {
+      "description" : "Total Sessions per Minute",
+      "type" : "FIELD_CHART",
+      "configuration" : {
+        "valuetype" : "total",
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "renderer" : "bar",
+        "interpolation" : "linear",
+        "field" : "totalsession",
+        "query" : "source:fwf92d3g14000548 AND action:\\\"perf-stats\\\"",
+        "interval" : "minute"
+      },
+      "col" : 1,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "Average Total Session",
+      "type" : "STATS_COUNT",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "totalsession",
+        "trend" : true,
+        "query" : "source:fwf92d3g14000548 AND action:\\\"perf-stats\\\"",
+        "stats_function" : "mean",
+        "lower_is_better" : true
+      },
+      "col" : 3,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "Average CPU",
+      "type" : "STATS_COUNT",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "cpu",
+        "trend" : true,
+        "query" : "source:fwf92d3g14000548 AND action:\\\"perf-stats\\\"",
+        "stats_function" : "mean",
+        "lower_is_better" : true
+      },
+      "col" : 3,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "Average Memory Usage",
+      "type" : "STATS_COUNT",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "memory",
+        "trend" : true,
+        "query" : "source:fwf92d3g14000548 AND action:\\\"perf-stats\\\"",
+        "stats_function" : "mean",
+        "lower_is_better" : true
+      },
+      "col" : 3,
+      "row" : 3,
+      "cache_time" : 10
+    }, {
+      "description" : "Average Disk Usage",
+      "type" : "STATS_COUNT",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "disk",
+        "trend" : true,
+        "query" : "source:fwf92d3g14000548 AND action:\\\"perf-stats\\\"",
+        "stats_function" : "mean",
+        "lower_is_better" : true
+      },
+      "col" : 3,
+      "row" : 4,
+      "cache_time" : 10
+    } ]
+  } ],
+  "grok_patterns" : [ ]
+}

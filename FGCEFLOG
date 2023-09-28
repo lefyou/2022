@@ -4894,7 +4894,7 @@
       "constraints": [
         {
           "type": "server-version",
-          "version": ">=5.0.6+51f2df8"
+          "version": ">=5.0.6"
         }
       ]
     }

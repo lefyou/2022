@@ -4827,7 +4827,7 @@
       "constraints": [
         {
           "type": "server-version",
-          "version": ">=5.1.5+51f2df8"
+          "version": ">=5.0.0"
         }
       ]
     },
